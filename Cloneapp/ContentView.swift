@@ -31,18 +31,18 @@ struct ContentView: View {
                         .padding()
                         .background(.white)
                         .frame(width: 300,height: 50 )
-                        .cornerRadius(10)
+                        .cornerRadius(30)
                     TextField("Enter Password",text: $inputText)
                         .padding()
                         .background(.white)
                         .frame(width: 300,height: 50 )
-                        .cornerRadius(10)
+                        .cornerRadius(30)
                     HStack {
                         Button("Login In"){}
                             .padding()
                             .frame(width: 300,height: 50 )
                             .background()
-                            .cornerRadius(20)
+                            .cornerRadius(30)
                     }
                 }
             }
