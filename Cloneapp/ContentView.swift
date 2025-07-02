@@ -1,14 +1,9 @@
-//
-//  ContentView.swift
-//  Cloneapp
-//
-//  Created by student on 01/07/25.
-//
-// this is trial 
 import SwiftUI
 
 struct ContentView: View {
     @State private var inputText = ""
+    @State private var animate = false  // Animation trigger
+    
     var body: some View {
         VStack {
             Image(.login)
@@ -16,39 +11,78 @@ struct ContentView: View {
                 .scaledToFit()
                 .frame(width: 200)
             
-            ZStack{
+            ZStack {
                 Rectangle()
-                    .frame(width: 405,height: 800)
+                    .foregroundStyle(.white)
+                    .frame(width: 405, height: 800)
                     .padding(0)
                     .cornerRadius(30)
                     .padding([.bottom], -250)
-                VStack{
+                
+                VStack {
                     Text("Login")
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
                         .font(.system(size: 40))
-                    TextField("Enter Username",text: $inputText)
+                    
+                    TextField("Enter Username", text: $inputText)
                         .padding()
-                        .background(.white)
-                        .frame(width: 300,height: 50 )
-                        .cornerRadius(30)
-                    TextField("Enter Password",text: $inputText)
+                        .frame(width: 300, height: 50)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 30)
+                                .stroke(Color.black, lineWidth: 2)
+                        )
+                    
+                    SecureField("Enter Password", text: $inputText)
                         .padding()
-                        .background(.white)
-                        .frame(width: 300,height: 50 )
-                        .cornerRadius(30)
+                        .frame(width: 300, height: 50)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 30)
+                                .stroke(Color.black, lineWidth: 2)
+                        )
+                    
                     HStack {
-                        Button("Login In"){}
+                        Button("Login In") {
+                            // action
+                        }
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(.black)
+                        .cornerRadius(30)
+                        .foregroundStyle(.white)
+                    }
+                    
+                    Text("Or")
+                        .padding()
+                    
+                    HStack {
+                        Image(.apple)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 60, height: 60)
                             .padding()
-                            .frame(width: 300,height: 50 )
-                            .background()
-                            .cornerRadius(30)
+                        Image(.google)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 50, height: 50)
+                            .padding()
+                        Image(.instagram)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 50, height: 50)
+                            .padding()
                     }
                 }
+                
             }
-           
+            // Start off screen (below) and animate to original position
+            .offset(y: animate ? 0 : 500)
+            .animation(.easeOut(duration: 0.7), value: animate)
         }
         .padding(0)
+        .background(.black)
+        .onAppear {
+            animate = true
+        }
     }
 }
 
