@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var inputText = ""
+    @State private var password = ""
     @State private var animate = false  // Animation trigger
     
     var body: some View {
@@ -32,7 +33,7 @@ struct ContentView: View {
                                 .stroke(Color.black, lineWidth: 2)
                         )
                     
-                    SecureField("Enter Password", text: $inputText)
+                    SecureField("Enter Password", text: $password)
                         .padding()
                         .frame(width: 300, height: 50)
                         .overlay(
